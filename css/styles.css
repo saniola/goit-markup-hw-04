@@ -263,6 +263,10 @@ header {
   padding-bottom: 120px;
 }
 
+.portfolio-top {
+  padding-top: 96px;
+}
+
 .services-item {
   max-width: 264px;
 }
@@ -298,7 +302,7 @@ header {
   justify-content: center;
   gap: 24px;
   flex-wrap: wrap;
-  padding: 96px 0 72px;
+  margin-bottom: 72px;
 }
 
 nav {
