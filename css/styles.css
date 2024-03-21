@@ -83,9 +83,14 @@ nav .logo {
   margin-bottom: 16px;
 }
 
+.nav-item {
+  position: relative;
+}
+
 .nav-item-link {
   color: var(--navy-blue);
   font-weight: 500;
+  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .nav-item-link:hover,
@@ -95,6 +100,7 @@ nav .logo {
 
 .contact {
   color: var(--slate);
+  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .contact:hover,
@@ -102,12 +108,35 @@ nav .logo {
   color: var(--ocean);
 }
 
+.nav-item.active .nav-item-link {
+  color: var(--ocean);
+}
+
+.nav-item.active .nav-item-link:before {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -25px;
+  width: 100%;
+  height: 4px;
+  background-color: var(--ocean);
+  border-radius: 2px;
+}
+
 .phone span {
   margin: 0 5px;
 }
 
 .hero {
-  background: linear-gradient(var(--grey), var(--grey)), url("../images/people-office.jpg") center center / cover no-repeat;
+  background-image: linear-gradient(
+      rgba(46, 47, 66, 0.7),
+      rgba(46, 47, 66, 0.7)
+    ),
+    url("../images/people-office.jpg");
+  background-color: var(--navy);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
   max-width: 1440px;
   margin: 0 auto;
   padding: 188px 0;
@@ -133,11 +162,13 @@ nav .logo {
   letter-spacing: 0.04em;
   padding: 16px 32px;
   cursor: pointer;
+  transition: box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .hero-button:hover {
   box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.15);
-  background: var(--ocean);
+  background-color: var(--ocean);
 }
 
 .service-title,
@@ -159,7 +190,8 @@ nav .logo {
 }
 
 .portfolio-title,
-.team-title {
+.team-title,
+.customers-title {
   color: var(--navy-blue);
   text-align: center;
   font-size: 36px;
@@ -176,6 +208,7 @@ nav .logo {
 .team-position {
   text-align: center;
   color: var(--slate);
+  margin-bottom: 8px;
 }
 
 .portfolio-group {
@@ -188,6 +221,9 @@ nav .logo {
   text-align: center;
   color: var(--iris);
   cursor: pointer;
+  transition: background 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    color 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .portfolio-group.active,
@@ -209,7 +245,6 @@ nav .logo {
 
 .footer-text {
   color: var(--cloud);
-  max-width: 264px;
 }
 
 .container {
@@ -245,11 +280,6 @@ header {
   display: flex;
 }
 
-.footer-container {
-  flex-direction: column;
-  gap: 16px;
-}
-
 .hero-container {
   text-align: center;
   max-width: 496px;
@@ -257,7 +287,8 @@ header {
 }
 
 .team,
-.services {
+.services,
+.customers {
   padding: 120px 0;
 }
 
@@ -275,7 +306,7 @@ header {
 
 .service-icon {
   border-radius: 4px;
-  background: var(--CLOUD, #F4F4FD);
+  background: var(--CLOUD, #f4f4fd);
   padding: 24px 0;
   text-align: center;
   margin-bottom: 8px;
@@ -302,9 +333,18 @@ header {
   padding: 32px 16px;
 }
 
+.portfolio-info {
+  z-index: 1;
+}
+
 .portfolio-card {
   border: 1px solid var(--cornflower);
   max-width: 360px;
+}
+
+.portfolio-thumb {
+  position: relative;
+  overflow: hidden;
 }
 
 .portfolio-group-list {
@@ -319,4 +359,186 @@ nav {
   display: flex;
   flex-wrap: wrap;
   align-items: baseline;
+}
+
+.team-socials,
+.customers-list {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+}
+
+.social-link,
+.footer-social-link {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: var(--iris);
+  fill: white;
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.social-link:hover {
+  background-color: var(--ocean);
+}
+
+.footer-social-link:hover {
+  background-color: var(--green);
+}
+
+.social-icon {
+  width: 16px;
+  height: 16px;
+}
+
+.footer-social-icon {
+  width: 24px;
+  height: 24px;
+}
+
+.customer-link {
+  border-radius: 4px;
+  border: 1px solid var(--light-slate, #8e8f99);
+  padding: 16px 32px;
+  display: inline-block;
+  fill: var(--light-slate, #8e8f99);
+  transition: border-color 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    fill 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.customer-link:hover {
+  border-color: var(--ocean);
+  fill: var(--ocean);
+}
+
+.customer-icon {
+  width: 104px;
+  height: 56px;
+}
+
+.footer-container {
+  display: flex;
+}
+
+.footer-brand {
+  margin-right: 120px;
+  max-width: 264px;
+}
+
+.footer-socials-list {
+  display: flex;
+  gap: 16px;
+}
+
+.footer-socials-title {
+  color: var(--white, #fff);
+  font-weight: 500;
+  line-height: 24px;
+  letter-spacing: 0.32px;
+  margin-bottom: 16px;
+}
+
+.portfolio-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 300px;
+  background-color: #3f51b5;
+  padding: 32px 40px;
+  transform: translateY(100%);
+  transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.portfolio-card:hover .portfolio-overlay,
+.portfolio-card:focus .portfolio-overlay {
+  transform: translateY(0);
+}
+
+.portfolio-overlay p {
+  color: var(--cloud, #f4f4fd);
+  font-family: inherit;
+  font-size: 16px;
+  line-height: 1.5;
+  letter-spacing: 0.02em;
+}
+
+.modal {
+  width: 100%;
+  max-width: 392px;
+  height: 584px;
+  border-radius: 4px;
+  background: var(--dairy, #fcfcfc);
+  box-shadow: 0px 2px 1px 0px rgba(0, 0, 0, 0.2),
+    0px 1px 3px 0px rgba(0, 0, 0, 0.12), 0px 1px 1px 0px rgba(0, 0, 0, 0.14);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  position: relative;
+  transition: opacity 1s, transform 1s;
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background: var(--NAVY-BLUE-modal, rgba(46, 47, 66, 0.4));
+  opacity: 1;
+  transition: opacity 1s, transform 1s;
+  z-index: 3;
+}
+
+.is-hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.is-hidden .modal-overlay {
+  opacity: 0;
+}
+
+.is-hidden .modal {
+  opacity: 0;
+  transform: scale(0.7);
+}
+
+.close-button {
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  border: none;
+  background-color: transparent;
+}
+
+.close-icon-ellipse {
+  fill: var(--light);
+  transition-property: fill;
+  transition-duration: 250ms;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.close-icon-ellipse {
+  fill: var(--cornflower, #e7e9fc);
+  transition: fill 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.close-icon:hover .close-icon-ellipse,
+.close-icon:focus .close-icon-ellipse {
+  fill: var(--ocean);
+}
+
+.close-icon .close-icon-cross {
+  fill: black;
+  transition: fill 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.close-icon:hover .close-icon-cross,
+.close-icon:focus .close-icon-cross {
+  fill: var(--white);
 }
